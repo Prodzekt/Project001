@@ -2,9 +2,7 @@ package klient;
 
 public class Uzytkownik 
 {
-	public static void main(String[] args) {
-		
-	}
+
 	private int czyLekarz;
 	private int id;
 	private String nazwa;
