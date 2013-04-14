@@ -9672,3 +9672,24 @@ java.library.path = C:\Windows\system32;C:\Windows\Sun\Java\bin;C:\Windows\syste
 
 !ENTRY org.eclipse.mylyn.tasks.ui 2 0 2013-04-08 15:19:35.636
 !MESSAGE Repository link provider took over 5000 ms to execute and was timed out: "[org.tigris.subversion.subclipse.mylyn.SubclipseTaskRepositoryLinkProvider@9885944]"
+!SESSION 2013-04-08 15:45:36.254 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.6.0_31
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pl_PL
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2013-04-08 15:45:53.867
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.ui 2 2 2013-04-08 15:47:05.206
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2013-04-14 11:13:33.489 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.6.0_31
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pl_PL
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2013-04-14 11:14:50.078
+!MESSAGE No search provider was registed. Tasks search is not available.
