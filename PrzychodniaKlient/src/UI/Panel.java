@@ -2,6 +2,11 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -48,6 +53,7 @@ public class Panel extends JPanel {
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton();
+		btnNewButton.setText("Zaloguj");
 		btnNewButton.addActionListener(new ActionListener()
 		{
 
@@ -60,11 +66,30 @@ public class Panel extends JPanel {
 				//if(login==l && haslo==h)
 					setTextField2("dziala!");
 				//else
-					{System.out.println("qqqqqqqqqqqqqqqqqq");}
-				repaint();
-				
-				IPrzychodniaSerwis ps=null;//
-				//ps.login(login, haslo)
+					//{System.out.println("qqqqqqqqqqqqqqqqqq");}
+					int registryPort = 8000;
+					IPrzychodniaSerwis ps=null;
+					 try {
+						ps = (IPrzychodniaSerwis)Naming.lookup("//localhost:"+registryPort+"/dServer");
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotBoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						ps.login(login, haslo);
+						System.out.println(ps.getDesc());
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					repaint();
+		
 			}
 			
 		});

@@ -4,4 +4,8 @@
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="wspolne.IPrzychodniaSerwis"/>
+<fullyQualifiedTypeName name="java.rmi.registry.LocateRegistry"/>
+<fullyQualifiedTypeName name="java.rmi.server.UnicastRemoteObject"/>
+<fullyQualifiedTypeName name="java.security.AccessControlException"/>
+<fullyQualifiedTypeName name="java.rmi.Naming"/>
 </qualifiedTypeNameHistroy>
