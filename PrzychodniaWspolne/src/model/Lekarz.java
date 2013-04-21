@@ -1,4 +1,4 @@
-package klient;
+package model;
 
 import wspolne.Harmonogram;
 

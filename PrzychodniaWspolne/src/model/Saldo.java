@@ -1,4 +1,4 @@
-package klient;
+package model;
 
 public class Saldo {
 	

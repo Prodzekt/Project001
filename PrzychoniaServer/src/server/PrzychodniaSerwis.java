@@ -21,6 +21,7 @@ public class PrzychodniaSerwis implements IPrzychodniaSerwis{
     PrzychodniaSerwis(String desc){
           description = desc;
     }
+    
 	@Override
 	public String getDesc() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -31,8 +32,9 @@ public class PrzychodniaSerwis implements IPrzychodniaSerwis{
 	public static void main(String[] args) {
 		 boolean err = false;
          int registryPort = 8000;
-         try{
-                IPrzychodniaSerwis server = new PrzychodniaSerwis("Dawidzie! xD");
+         try
+         {
+                IPrzychodniaSerwis server = new PrzychodniaSerwis("Wysylka z servera");
                 LocateRegistry.createRegistry(registryPort);
                 UnicastRemoteObject.exportObject(server,0);
                 Naming.rebind("//localhost:"+registryPort+"/dServer", server);

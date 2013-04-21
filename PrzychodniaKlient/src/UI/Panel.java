@@ -61,8 +61,8 @@ public class Panel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String login = getTextField0();
 				String haslo = getTextField1();
-				System.out.println(login);
-				System.out.println(haslo);
+				//System.out.println(login);
+				//System.out.println(haslo);
 				//if(login==l && haslo==h)
 					setTextField2("dziala!");
 				//else
@@ -71,6 +71,7 @@ public class Panel extends JPanel {
 					IPrzychodniaSerwis ps=null;
 					 try {
 						ps = (IPrzychodniaSerwis)Naming.lookup("//localhost:"+registryPort+"/dServer");
+						ps.login(login, haslo);
 					} catch (MalformedURLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -82,7 +83,7 @@ public class Panel extends JPanel {
 						e1.printStackTrace();
 					}
 					try {
-						ps.login(login, haslo);
+						
 						System.out.println(ps.getDesc());
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block
