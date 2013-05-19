@@ -27,9 +27,9 @@ public class PrzychodniaSerwis implements IPrzychodniaSerwis{
 		// TODO Auto-generated method stub
 		return description;
 	}
- 
 
-	public static void main(String[] args) {
+		public void start()
+		{
 		 boolean err = false;
          int registryPort = 8000;
          try
@@ -62,6 +62,7 @@ public class PrzychodniaSerwis implements IPrzychodniaSerwis{
          if(!err)
                 System.out.println("\n[OK] Dzia³amy! \n");
 	}
+	
 
 
 
