@@ -1,27 +1,28 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2013-05-19 22:44:20 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="model.DaneOsobowe" table="DANEOSOBOWE">
-        <id name="imie" type="java.lang.String">
-            <column name="IMIE" />
-            <generator class="assigned" />
-        </id>
-        <property name="nazwisko" type="java.lang.String">
-            <column name="NAZWISKO" />
-        </property>
-        <property name="adres" type="java.lang.String">
-            <column name="ADRES" />
-        </property>
-        <property name="wiek" type="int">
-            <column name="WIEK" />
-        </property>
-        <property name="tel" type="int">
-            <column name="TEL" />
-        </property>
-        <property name="pesel" type="int">
-            <column name="PESEL" />
-        </property>
-    </class>
+ <class name="model.DaneOsobowe" table="DANEOSOBOWE">
+ <id  name="pesel" type="integer">
+   <column name="PESEL"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="imie" type="java.lang.String">
+   <column name="IMIE"/>
+  </property>
+  <property generated="never" lazy="false" name="nazwisko" type="java.lang.String">
+   <column name="NAZWISKO"/>
+  </property>
+  <property generated="never" lazy="false" name="adres" type="java.lang.String">
+   <column name="ADRES"/>
+  </property>
+  <property generated="never" lazy="false" name="wiek" type="int">
+   <column name="WIEK"/>
+  </property>
+  <property generated="never" lazy="false" name="tel" type="int">
+   <column name="TEL"/>
+  </property>
+  
+ </class>
 </hibernate-mapping>
