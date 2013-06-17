@@ -1,30 +1,34 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2013-05-19 22:44:20 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="model.Uzytkownik" table="UZYTKOWNIK">
-        <id name="id" type="int">
-            <column name="ID" />
-            <generator class="assigned" />
-        </id>
-        <property name="czyLekarz" type="int">
-            <column name="CZYLEKARZ" />
-        </property>
-        <property name="nazwa" type="java.lang.String">
-            <column name="NAZWA" />
-        </property>
-        <many-to-one name="dane" class="model.DaneOsobowe" fetch="join">
-            <column name="DANE" />
-        </many-to-one>
-        <many-to-one name="lekarz" class="model.Lekarz" fetch="join">
-            <column name="LEKARZ" />
-        </many-to-one>
-        <many-to-one name="saldo" class="model.Saldo" fetch="join">
-            <column name="SALDO" />
-        </many-to-one>
-        <many-to-one name="platnosc" class="model.Platnosc" fetch="join">
-            <column name="PLATNOSC" />
-        </many-to-one>
-    </class>
+ <class name="model.Uzytkownik" table="UZYTKOWNIK">
+  <id name="nazwa" type="java.lang.String">
+   <column name="NAZWA"/>
+   <generator class="assigned"/>
+  </id>
+  
+  <property generated="never" lazy="false" name="czyLekarz" type="int">
+   <column name="CZYLEKARZ"/>
+  </property>
+  <property generated="never" lazy="false" name="id" type="int">
+   <column name="ID"/>
+  </property>
+  <many-to-one class="int" fetch="join" name="dane">
+   <column name="DANE"/>
+  </many-to-one>
+  <many-to-one class="model.Lekarz" fetch="join" name="lekarz">
+   <column name="LEKARZ"/>
+  </many-to-one>
+  <many-to-one class="model.Saldo" fetch="join" name="saldo">
+   <column name="SALDO"/>
+  </many-to-one>
+  <many-to-one class="model.Platnosc" fetch="join" name="platnosc">
+   <column name="PLATNOSC"/>
+  </many-to-one>
+  <property lazy="false" name="haslo" type="java.lang.String">
+   <column name="HASLO"/>
+  </property>
+ </class>
 </hibernate-mapping>

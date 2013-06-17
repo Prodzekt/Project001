@@ -2,7 +2,7 @@ package wspolne;
 
 public class Configuration
 {
-	int rmiPort;
+	static int rmiPort;
 
 	public int getRmiPort() {
 		return rmiPort;

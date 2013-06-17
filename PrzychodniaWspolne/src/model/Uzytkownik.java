@@ -6,10 +6,11 @@ public class Uzytkownik
 	private int czyLekarz;
 	private int id;
 	private String nazwa;
-	private DaneOsobowe dane;
-	private Lekarz lekarz;
-	private Saldo saldo;
-	private Platnosc platnosc;
+	private String haslo;
+	private int dane;
+	private int lekarz;
+	private int saldo;
+	private int platnosc;
 	
 	
 
@@ -56,56 +57,56 @@ public class Uzytkownik
 
 
 
-	public DaneOsobowe getDane() {
+	public int getDane() {
 		return dane;
 	}
 
 
 
 
-	public void setDane(DaneOsobowe dane) {
-		this.dane = dane;
+	public void setDane(int i) {
+		this.dane = i;
 	}
 
 
 
 
-	public Lekarz getLekarz() {
+	public int getLekarz() {
 		return lekarz;
 	}
 
 
 
 
-	public void setLekarz(Lekarz lekarz) {
+	public void setLekarz(int lekarz) {
 		this.lekarz = lekarz;
 	}
 
 
 
 
-	public Saldo getSaldo() {
+	public int getSaldo() {
 		return saldo;
 	}
 
 
 
 
-	public void setSaldo(Saldo saldo) {
+	public void setSaldo(int saldo) {
 		this.saldo = saldo;
 	}
 
 
 
 
-	public Platnosc getPlatnosc() {
+	public int getPlatnosc() {
 		return platnosc;
 	}
 
 
 
 
-	public void setPlatnosc(Platnosc platnosc) {
+	public void setPlatnosc(int platnosc) {
 		this.platnosc = platnosc;
 	}
 
@@ -115,5 +116,19 @@ public class Uzytkownik
 	public void wyswietl()
 	{
 		System.out.println("Uzytkownik: "+this.nazwa+" , Id:"+this.id);
+	}
+
+
+
+
+	public String getHaslo() {
+		return haslo;
+	}
+
+
+
+
+	public void setHaslo(String haslo) {
+		this.haslo = haslo;
 	}
 }

@@ -12,13 +12,19 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-//import wspolne.IPrzychodniaSerwis;
+import wspolne.IPrzychodniaSerwis;
+import wspolne.Configuration;
+import model.DaneOsobowe;
+import model.Lekarz;
+import model.Platnosc;
+import model.Saldo;
+import model.Uzytkownik;
 
 import java.awt.Font;
-//import java.net.MalformedURLException;
-//import java.rmi.Naming;
-//import java.rmi.NotBoundException;
-//import java.rmi.RemoteException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class Panel extends JPanel {
 	private JTextField textField;
@@ -36,12 +42,24 @@ public class Panel extends JPanel {
 	public void setTextField2(String t) {
 		this.textField_1.setText(t);
 	}
-
+	
+	
+	
+	
+	private Uzytkownik uzytkownik;
+	private Platnosc platnosc;
+	private Lekarz lekarz;
+	private DaneOsobowe daneOsobowe;
+	private Saldo saldo;
 
 	private JTextField textField_1;
 	private JTextField textField_2;
 	final JTextPane txtpnLogin = new JTextPane();
 	final JTextPane txtpnHaslo = new JTextPane();
+	
+	JTextPane txtpnLogin_1 = new JTextPane();
+	JTextPane txtpnHaslo_1 = new JTextPane();
+	
 	final JButton btnNewButton = new JButton();
 	final JButton btnRejestracja = new JButton("Rejestracja");
 	//rejestracja
@@ -94,6 +112,9 @@ public class Panel extends JPanel {
 	private JTextField txtNrKonta1;
 	private JTextField txtNazwaBanku1;
 	private JTextField txtKwota1;
+	
+	private JTextField txtLogin;
+	private JTextField txtHaslo;
 	
 //rejestracja wizyty
 	
@@ -372,6 +393,33 @@ public class Panel extends JPanel {
 		
 		//rejestracja TODO
 		
+		txtpnLogin_1.setText("Login");
+		txtpnLogin_1.setEditable(false);
+		txtpnLogin_1.setBackground(SystemColor.inactiveCaptionText);
+		txtpnLogin_1.setVisible(false);
+		txtpnLogin_1.setBounds(179, 30, 41, 20);
+		add(txtpnLogin_1);
+		
+	
+		txtpnHaslo_1.setText("Haslo");
+		txtpnHaslo_1.setEditable(false);
+		txtpnHaslo_1.setVisible(false);
+		txtpnHaslo_1.setBackground(SystemColor.inactiveCaptionText);
+		txtpnHaslo_1.setBounds(179, 60, 41, 20);
+		add(txtpnHaslo_1);
+		
+		txtLogin = new JTextField();
+		txtLogin.setBounds(230, 30, 100, 20);
+		txtLogin.setVisible(false);
+		add(txtLogin);
+		txtLogin.setColumns(10);
+		
+		txtHaslo = new JTextField();
+		txtHaslo.setVisible(false);
+		txtHaslo.setBounds(230, 60, 100, 20);
+		add(txtHaslo);
+		txtHaslo.setColumns(10);
+		
 		
 		rejAdres.setColumns(10); 
 		rejImie.setColumns(10);
@@ -467,6 +515,10 @@ public class Panel extends JPanel {
 				btnNewButton.setVisible(true);
 				textField.setVisible(true);
 				btnRejestracja.setVisible(true);
+				txtpnLogin_1.setVisible(false);
+				txtpnHaslo_1.setVisible(false);
+				txtLogin.setVisible(false);
+				txtHaslo.setVisible(false);
 			}
 		});
 		
@@ -489,51 +541,70 @@ public class Panel extends JPanel {
 				//System.out.println(login);
 				//System.out.println(haslo);
 				
-			      
-//					int registryPort = 8000;
-//					IPrzychodniaSerwis ps=null;
-//					 try {
-//						ps = (IPrzychodniaSerwis)Naming.lookup("//localhost:"+registryPort+"/dServer");
-//						ps.login(login, haslo);
-//					} catch (MalformedURLException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					} catch (RemoteException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					} catch (NotBoundException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//					try {
-//						
-//						System.out.println(ps.getDesc());
-//					} catch (RemoteException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//					repaint();
-//				if(login=="login" && haslo=="haslo")
-//				{
-				txtpnLogin.setVisible(false);
-				txtpnHaslo.setVisible(false);
-				textField_1.setVisible(false);
-				textField_2.setVisible(false);
-				btnNewButton.setVisible(false);
-				textField.setVisible(false);
-				btnRejestracja.setVisible(false);
+				Configuration conf = null;
 				
-					txtz.setVisible(true);
-					txtpnWitaj.setVisible(true);
-					txtFieldz.setVisible(true);
-					txtpnTwojeSaldo.setVisible(true);
-					btnNewButton_1.setVisible(true);
-					btnNewButton_2.setVisible(true);
-					btnWyloguj.setVisible(true);
-					btnNewButton_3.setVisible(true);
-					btnNewButton_4.setVisible(true);
-					btnNewButton_5.setVisible(true);
-					btnEKonto.setVisible(true);
+			      int registryPort = conf.getRmiPort();
+				
+			//connection		
+					IPrzychodniaSerwis ps=null;
+					 try {
+						ps = (IPrzychodniaSerwis)Naming.lookup("//localhost:"+registryPort+"/dServer");
+						if(ps.login(login, haslo))
+						{
+							uzytkownik = ps.uzytkownik(login);
+							daneOsobowe = ps.daneOsobowe(uzytkownik.getDane());
+							platnosc = ps.platnosc(uzytkownik.getPlatnosc());
+							saldo = ps.saldo(uzytkownik.getSaldo());
+							lekarz = ps.lekarz(uzytkownik.getLekarz());
+							
+							
+							//done
+							txtpnLogin.setVisible(false);
+							txtpnHaslo.setVisible(false);
+							textField_1.setVisible(false);
+							textField_2.setVisible(false);
+							btnNewButton.setVisible(false);
+							textField.setVisible(false);
+							btnRejestracja.setVisible(false);
+							
+							txtz.setText(Double.toString(saldo.getSaldo()));
+							txtFieldz.setText(daneOsobowe.getImie()+" "+daneOsobowe.getNazwisko());
+							
+								txtz.setVisible(true);
+								txtpnWitaj.setVisible(true);
+								txtFieldz.setVisible(true);
+								txtpnTwojeSaldo.setVisible(true);
+								btnNewButton_1.setVisible(true);
+								btnNewButton_2.setVisible(true);
+								btnWyloguj.setVisible(true);
+								btnNewButton_3.setVisible(true);
+								btnNewButton_4.setVisible(true);
+								btnNewButton_5.setVisible(true);
+								btnEKonto.setVisible(true);
+						}
+						else
+						{
+							textField_1.setText("Nieprawidlowe dane");
+						}
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotBoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				//sprawdzanie 
+
+					
+					
+					
+					
+					
+				
 					
 //				}
 			
@@ -575,6 +646,10 @@ public class Panel extends JPanel {
 				txtNrKonta.setVisible(true);
 				txtNazwaBanku.setVisible(true);
 				txtKwota.setVisible(true);
+				txtpnLogin_1.setVisible(true);
+				txtpnHaslo_1.setVisible(true);
+				txtLogin.setVisible(true);
+				txtHaslo.setVisible(true);
 			}
 		});
 		
@@ -582,7 +657,52 @@ public class Panel extends JPanel {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				String think = "INSERT INTO `tabela` ( `id` , `produkt` , `cena` ) VALUES (NULL , ‘chleb’, ‘2.40′), (NULL , ‘mąka’, ‘3.55′), (NULL , ‘jajka’, ‘5.87′)";
+				//String think = "INSERT INTO `tabela` ( `id` , `produkt` , `cena` ) VALUES (NULL , ‘chleb’, ‘2.40′), (NULL , ‘mąka’, ‘3.55′), (NULL , ‘jajka’, ‘5.87′)";
+				Configuration conf = null;
+				
+			     
+				int registryPort = conf.getRmiPort();
+				
+			//connection		
+					IPrzychodniaSerwis ps=null;
+					 try {
+						ps = (IPrzychodniaSerwis)Naming.lookup("//localhost:"+registryPort+"/dServer");
+						
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotBoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
+				DaneOsobowe dane = new DaneOsobowe();
+				dane.setPesel(Integer.parseInt(rejPesel.getText()));
+				dane.setImie(rejImie.getText());
+				dane.setNazwisko(rejNazwisko.getText());
+				dane.setAdres(rejAdres.getText());
+				dane.setTel(Integer.parseInt(rejTel.getText()));
+				dane.setWiek(Integer.parseInt(rejWiek.getText()));
+				
+				Uzytkownik uzyt = new Uzytkownik();
+				uzyt.setCzyLekarz(0);
+				uzyt.setDane(Integer.parseInt(rejPesel.getText()));
+				uzyt.setHaslo(txtHaslo.getText());
+				uzyt.setNazwa(txtLogin.getText());
+				uzyt.setPlatnosc(Integer.parseInt(txtKwota.getText()));
+				uzyt.setSaldo(Integer.parseInt(txtKwota.getText()));
+				
+				Platnosc plac = new Platnosc();
+				plac.setKwota(Integer.parseInt(txtKwota.getText()));
+				plac.setNazwaBanku(txtNazwaBanku.getText());
+				plac.setNrKonta(Integer.parseInt(txtNrKonta.getText()));
+				
+				if(ps.rejestracja(uzyt,dane,plac))
+					System.out.println("zadzialalo");
+				//session.save(dane);
 				
 				txtpnLogin.setVisible(true);
 				txtpnHaslo.setVisible(true);
@@ -612,6 +732,10 @@ public class Panel extends JPanel {
 				txtNrKonta.setVisible(false);
 				txtNazwaBanku.setVisible(false);
 				txtKwota.setVisible(false);
+				txtpnLogin_1.setVisible(false);
+				txtpnHaslo_1.setVisible(false);
+				txtLogin.setVisible(false);
+				txtHaslo.setVisible(false);
 				
 				btnRejestruj.setVisible(false);
 			}
@@ -636,6 +760,12 @@ public class Panel extends JPanel {
 				 txtpnPesel1.setVisible(true);
 				 txtpnTelefon11.setVisible(true);
 				 
+				 textField1.setText(daneOsobowe.getImie());
+				 textField_11.setText(daneOsobowe.getNazwisko());
+				 textField_21.setText(daneOsobowe.getAdres());
+				 textField_31.setText(Integer.toString(daneOsobowe.getPesel()));
+				 textField_41.setText(Integer.toString(daneOsobowe.getTel()));
+				 
 				textField1.setVisible(true);
 				textField_11.setVisible(true);
 				textField_21.setVisible(true);
@@ -649,11 +779,42 @@ public class Panel extends JPanel {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				
+				Configuration conf = null;
+				
+			      int registryPort = conf.getRmiPort();
+				
+			//connection		
+					IPrzychodniaSerwis ps=null;
+					 try {
+						ps = (IPrzychodniaSerwis)Naming.lookup("//localhost:"+registryPort+"/dServer");
+						
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotBoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
+					 daneOsobowe.setImie(textField1.getText());
+					 daneOsobowe.setNazwisko(textField_11.getText());
+					 daneOsobowe.setAdres(textField_21.getText());
+					 daneOsobowe.setPesel(Integer.parseInt(textField_31.getText()));
+					 daneOsobowe.setTel(Integer.parseInt(textField_41.getText()));
+					 ps.updateDaneOsobowe(daneOsobowe);
+					 
+				
 				txtpnImie1.setVisible(false);
 				 txtpnNazwisko1.setVisible(false);
 				 txtpnAdres1.setVisible(false);
 				 txtpnPesel1.setVisible(false);
 				 txtpnTelefon11.setVisible(false);
+				 
+				 
 				 
 				textField1.setVisible(false);
 				textField_11.setVisible(false);
@@ -682,6 +843,10 @@ public class Panel extends JPanel {
 				textField_41.setVisible(false);
 				btnNewButton1.setVisible(false);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				txtNrKonta1.setText(Integer.toString(platnosc.getNrKonta()));
+				txtNazwaBanku1.setText(platnosc.getNazwaBanku());
+				txtKwota1.setText(Double.toString(platnosc.getKwota()));
+				
 				txtpnNrKonta1.setVisible(true);
 				txtpnNazwaBanku1.setVisible(true);
 				txtpnKwota1.setVisible(true);
@@ -695,6 +860,31 @@ public class Panel extends JPanel {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				Configuration conf = null;
+				
+			      int registryPort = conf.getRmiPort();
+				
+			//connection		
+					IPrzychodniaSerwis ps=null;
+					 try {
+						ps = (IPrzychodniaSerwis)Naming.lookup("//localhost:"+registryPort+"/dServer");
+						
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotBoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				platnosc.setKwota(Integer.parseInt(txtKwota1.getText()));
+				platnosc.setNazwaBanku(txtNazwaBanku1.getText());
+				platnosc.setNrKonta(Integer.parseInt(txtNrKonta1.getText()));
+				
+				ps.updatePlatnosc(platnosc);
+				
 				txtpnNrKonta1.setVisible(false);
 				txtpnNazwaBanku1.setVisible(false);
 				txtpnKwota1.setVisible(false);
@@ -839,6 +1029,9 @@ public class Panel extends JPanel {
 		
 		btnEKonto.setBounds(10, 240, 140, 40);
 		add(btnEKonto);
+		
+		
+		
 		
 		
 		
