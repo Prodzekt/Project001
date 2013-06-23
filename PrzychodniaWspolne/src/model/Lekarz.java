@@ -2,16 +2,16 @@ package model;
 
 import wspolne.Harmonogram;
 
-public class Lekarz {
+public class Lekarz implements java.io.Serializable{
 	
 	private String specjalizacja;
-	private Harmonogram id;
+	private int id;
 
-	public Harmonogram getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Harmonogram id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -4,7 +4,12 @@ public class Configuration
 {
 	static int rmiPort;
 
-	public int getRmiPort() {
+	public Configuration()
+	{
+		rmiPort=8000;
+	}
+	public int getRmiPort() 
+	{
 		return rmiPort;
 	}
 

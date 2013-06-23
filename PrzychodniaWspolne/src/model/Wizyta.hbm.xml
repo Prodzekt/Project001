@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-06-23 22:49:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.Wizyta" table="WIZYTA">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="pacjent" type="java.lang.String">
+            <column name="PACJENT" />
+        </property>
+        <property name="lekarz" type="java.lang.String">
+            <column name="LEKARZ" />
+        </property>
+        <property name="rok" type="int">
+            <column name="ROK" />
+        </property>
+        <property name="miesiac" type="int">
+            <column name="MIESIAC" />
+        </property>
+        <property name="dzien" type="int">
+            <column name="DZIEN" />
+        </property>
+        <property name="godzina" type="int">
+            <column name="GODZINA" />
+        </property>
+    </class>
+</hibernate-mapping>

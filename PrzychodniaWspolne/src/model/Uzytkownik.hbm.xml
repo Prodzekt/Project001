@@ -1,34 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2013-05-19 22:44:20 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2013-06-23 17:18:48 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
  <class name="model.Uzytkownik" table="UZYTKOWNIK">
   <id name="nazwa" type="java.lang.String">
    <column name="NAZWA"/>
    <generator class="assigned"/>
   </id>
-  
   <property generated="never" lazy="false" name="czyLekarz" type="int">
    <column name="CZYLEKARZ"/>
   </property>
-  <property generated="never" lazy="false" name="id" type="int">
-   <column name="ID"/>
-  </property>
-  <many-to-one class="int" fetch="join" name="dane">
-   <column name="DANE"/>
-  </many-to-one>
-  <many-to-one class="model.Lekarz" fetch="join" name="lekarz">
-   <column name="LEKARZ"/>
-  </many-to-one>
-  <many-to-one class="model.Saldo" fetch="join" name="saldo">
-   <column name="SALDO"/>
-  </many-to-one>
-  <many-to-one class="model.Platnosc" fetch="join" name="platnosc">
-   <column name="PLATNOSC"/>
-  </many-to-one>
-  <property lazy="false" name="haslo" type="java.lang.String">
+  <property generated="never" lazy="false" name="haslo" type="java.lang.String">
    <column name="HASLO"/>
+  </property>
+  <property generated="never" lazy="false" name="dane" type="int">
+   <column name="DANE"/>
+  </property>
+  <property generated="never" lazy="false" name="lekarz" type="int">
+   <column name="LEKARZ"/>
+  </property>
+  <property generated="never" lazy="false" name="saldo" type="int">
+   <column name="SALDO"/>
+  </property>
+  <property generated="never" lazy="false" name="platnosc" type="int">
+   <column name="PLATNOSC"/>
+  </property>
+  <property name="id" type="int">
+   <column name="ID"/>
   </property>
  </class>
 </hibernate-mapping>

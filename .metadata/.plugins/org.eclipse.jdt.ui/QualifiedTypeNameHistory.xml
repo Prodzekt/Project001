@@ -16,4 +16,20 @@
 <fullyQualifiedTypeName name="java.rmi.NotBoundException"/>
 <fullyQualifiedTypeName name="javax.swing.SwingConstants"/>
 <fullyQualifiedTypeName name="java.awt.SystemColor"/>
+<fullyQualifiedTypeName name="wspolne.Configuration"/>
+<fullyQualifiedTypeName name="javax.management.Query"/>
+<fullyQualifiedTypeName name="org.hibernate.mapping.List"/>
+<fullyQualifiedTypeName name="org.hibernate.Query"/>
+<fullyQualifiedTypeName name="model.Uzytkownik"/>
+<fullyQualifiedTypeName name="model.Platnosc"/>
+<fullyQualifiedTypeName name="model.Lekarz"/>
+<fullyQualifiedTypeName name="model.Saldo"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="model.Wizyta"/>
 </qualifiedTypeNameHistroy>

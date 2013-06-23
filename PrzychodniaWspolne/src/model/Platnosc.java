@@ -1,6 +1,6 @@
 package model;
 
-public class Platnosc {
+public class Platnosc implements java.io.Serializable{
 
 	private int nrKonta;
 	private String nazwaBanku;

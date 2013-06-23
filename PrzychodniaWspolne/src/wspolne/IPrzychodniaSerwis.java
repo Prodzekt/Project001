@@ -9,24 +9,30 @@ import model.Lekarz;
 import model.Platnosc;
 import model.Saldo;
 import model.Uzytkownik;
+import model.Wizyta;
 
 import org.hibernate.Query;
 
-public interface IPrzychodniaSerwis extends Remote {
+public interface IPrzychodniaSerwis extends Remote 
+{
 	boolean login(String login, String haslo) throws RemoteException;
+	List<Integer> wizyty(String name, int czyLekarz) throws RemoteException;
 	List MySQLQuerry(String MySql) throws RemoteException;
 	String getDesc() throws RemoteException;
-	boolean rejestracja(Uzytkownik uzyt, DaneOsobowe dane, Platnosc plac);
-	DaneOsobowe daneOsobowe(int i);
-	Platnosc platnosc(int i);
-	Uzytkownik uzytkownik(String login);
-	Saldo saldo(int i);
-	Lekarz lekarz(int i);
+	void rejestracja() throws RemoteException;
+	void update() throws RemoteException;
+	DaneOsobowe daneOsobowe(int i) throws RemoteException;
+	Platnosc platnosc(int i) throws RemoteException;
+	Uzytkownik uzytkownik(String login) throws RemoteException;
+	Saldo saldo(int d) throws RemoteException;
+	Lekarz lekarz(int i) throws RemoteException;
+	Wizyta wizyta(int i) throws RemoteException;
 	
-	void updateDaneOsobowe(DaneOsobowe dane);
-	void updatePlatnosc(Platnosc plac);
-	void updateUzytkownik(Uzytkownik uzyt);
-	void updateSaldo(Saldo saldo);
-	void updateLekarz(Lekarz lekarz);
+	boolean updateDaneOsobowe() throws RemoteException;
+	boolean updatePlatnosc() throws RemoteException;
+	boolean updateUzytkownik() throws RemoteException;
+	boolean updateSaldo() throws RemoteException;
+	boolean updateLekarz() throws RemoteException;
+	boolean updateWizyta()throws RemoteException;
 
 }

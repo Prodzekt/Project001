@@ -1,11 +1,12 @@
 package model;
 
-public class Uzytkownik 
+public class Uzytkownik implements java.io.Serializable
 {
 
+
+	private String nazwa;
 	private int czyLekarz;
 	private int id;
-	private String nazwa;
 	private String haslo;
 	private int dane;
 	private int lekarz;
@@ -92,8 +93,8 @@ public class Uzytkownik
 
 
 
-	public void setSaldo(int saldo) {
-		this.saldo = saldo;
+	public void setSaldo(int d) {
+		this.saldo = d;
 	}
 
 
